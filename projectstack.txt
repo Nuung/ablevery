@@ -1,0 +1,38 @@
+#copyright¨Ï ALL Copyrights reserved by Hyeonwoo, Jeong
+#AB:LE (every) company
+
+#AWS EC2 ubuntu 18.0.*
+- free tier
+
+#WebServer(EC2)
+- nginx
+	- test-frontend forwarding
+	- /home/ubuntu/projects/ableProject/test-frontend
+	- proxy server setting (not yet)
+
+- front-end
+	- HTML5, CSS3 with bootstarp
+	- vanilla javascript (at first)
+	- to react.js (to scale up)
+
+#WebApplicationServer(EC2)
+- back-end
+	- Nodejs 
+		- express, resetAPI
+
+#DataBase
+- mysql
+
+#IDE
+- Visual Studio Code
+	- sftp
+
+#SSH
+- putty
+	- private key: local download folder
+
+#ETC
+- github
+
+#Open-source
+- Docker (not yet)

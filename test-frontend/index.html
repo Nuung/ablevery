@@ -51,7 +51,7 @@
   <section id="about">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto" style="text-align: center;">
+        <div class="col-lg-8 mx-auto" >
           <h2>About this page</h2>
           <p class="lead">form tag action button</p>
           <div id="main_menu_wrapper">
@@ -60,20 +60,49 @@
               <button type="button" class="btn btn-secondary btn-lg">전화 연결</button>
           </div>
           <div id="main_form_wrapper" style="display: none;">
-              <form action="#" method="POST" target="_self">
-                  <p><label for="input_name">이름</label><input type="text" id="input_name" name="input_name" placeholder="이름을 입력하세요" /></p>
-                  <p><label for="input_place">장소</label><input type="text" id="input_place" name="input_place" placeholder="장소를 선택하세요(예시)" /></p>
-                  <p><label for="input_date">날짜</label><input type="text" id="input_date" name="input_date" placeholder="날짜를 선택하세요" /></p>
-                  <p><label for="input_with">함께하는 동행인 여부</label><input type="text" id="input_with" name="input_with" placeholder="함께하는 동행인 여부" /></p>
-                  <p><label for="input_plan">계획 구매 품목</label><input type="text" id="input_plan" name="input_plan" placeholder="계획 구매 품목" /></p>
-                  <p><label for="input_style">원하는 스타일</label><input type="text" id="input_style" name="input_style" placeholder="계획 구매 품목" /></p>
-                  <p><label for="input_brand">선호하는 브랜드</label><input type="text" id="input_brand" name="input_style" placeholder="선호하는 브랜드" /></p>
-                  <p><label for="input_price">물품 예상 금액</label><input type="text" id="input_price" name="input_price" placeholder="물품 예상 금액" /></p>
-                  <p><label for="input_info">기타 추가 정보</label></p>
-                  <p><textarea id="input_info" name="input_info" placeholder="물품 목적, 본인이 가진 의류, 선호하는 질감 등"></textarea></p>
-                  <p><input type="submit" value="Submit" id="tasks_post_submit"> <input type="reset" value="Reset"></p>
+              <form role="form" action="#" method="POST" target="_self">
+                  <div class="form-group">
+                    <label for="input_name">이름</label>
+                    <input type="text" id="input_name" class="form-control" name="input_name" placeholder="이름을 입력하세요" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_place">장소</label>
+                    <input type="text" id="input_place" class="form-control" name="input_place" placeholder="장소를 선택하세요(예시)" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_date">날짜</label>
+                    <input type="text" id="input_date" class="form-control" name="input_date" placeholder="날짜를 선택하세요" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_with">함께하는 동행인 여부</label>
+                    <input type="text" id="input_with" class="form-control" name="input_with" placeholder="함께하는 동행인 여부" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_plan">계획 구매 품목</label>
+                    <input type="text" id="input_plan" class="form-control" name="input_plan" placeholder="계획 구매 품목" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_style">원하는 스타일</label>
+                    <input type="text" id="input_style" class="form-control" name="input_style" placeholder="원하는 스타일" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_brand">선호하는 브랜드</label>
+                    <input type="text" id="input_brand" class="form-control" name="input_style" placeholder="선호하는 브랜드" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_price">물품 예상 금액</label>
+                    <input type="text" id="input_price" class="form-control" name="input_price" placeholder="물품 예상 금액" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input_info">기타 추가 정보</label>
+                  </div>
+                  <div class="form-group">
+                    <textarea id="input_info" class="form-control" name="input_info" placeholder="물품 목적, 본인이 가진 의류, 선호하는 질감 등"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Submit" id="tasks_post_submit" class="form-control" /> <input type="reset" value="Reset" class="form-control" />
+                  </div>
                   <a class="nav-link js-scroll-trigger" href="#about">GO BACK</a>
-                  <!-- <input type="text" id="input_price" name="input_price" placeholder="물품 목적, 본인이 가진 의류, 선호하는 질감 등" /> -->
               </form>
           </div>
         </div>
@@ -106,7 +135,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; 정현우?</p>
+      <p class="m-0 text-center text-white">Copyright &copy; AB:LE</p>
     </div>
     <!-- /.container -->
   </footer>
