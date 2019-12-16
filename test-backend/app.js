@@ -1,10 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var formRouter = require('./routes/formRoutes');
-var app = express();
+const formRouter = require('./src/routes/formRoutes');
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json()); // body-parser setting ~ express include body-parser from 4.X version

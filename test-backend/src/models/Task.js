@@ -1,13 +1,13 @@
 'user strict';
 // db setting
-var mysql_dbc = require('../database/db_con')();
+const mysql_dbc = require('../database/db_con')();
 
 // connect to DB -> and connection Test
-var connection = mysql_dbc.init();
+const connection = mysql_dbc.init();
 mysql_dbc.test_open(connection);
 
 // Task object constructor
-var Task = function(task) {
+const Task = function(task) {
     this.task = task.task;
     this.status = task.status;
     this.created_at = new Date();

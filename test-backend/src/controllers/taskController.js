@@ -1,6 +1,6 @@
 'use strict';
 
-var Task = require('../models/Task');
+const Task = require('../models/Task');
 
 exports.list_all_tasks = function(req, res) {
     Task.getAllTask(function(err, task) {
@@ -16,7 +16,7 @@ exports.list_all_tasks = function(req, res) {
 exports.create_a_task = function(req, res) {
     // newTask에 대한 검증이 필요함! -> 예외 상황엔 no insert  / newTask 노출 X -> 정규표현식 or / 모든 곳에 해당
     // -> 내부기능이 있을 수 있다 -> 시큐어 코딩 정보 확인하기!
-    var new_task = new Task(req.body);
+    let new_task = new Task(req.body);
   
     //handles null error 
     if(!new_task.task) {
