@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154978198-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-154978198-1');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -35,9 +45,6 @@
             <a class="nav-link js-scroll-trigger" href="#services">서비스</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#applicationForm">신청서</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">연락</a>
           </li>
         </ul>
@@ -45,42 +52,52 @@
     </div>
   </nav>
 
-  <header class="text-white">
-    <div class="container text-center">
-      <h1>Welcome to AB:LE</h1>
-      <p class="lead">A landing page</p>
-    </div>
-  </header>
+  <img src="./images/landingpage-01.jpg" width="100%"/>
 
   <section id="about">
+    <img src="./images/landingpage-02.jpg" width="100%"/>
+  </section>
+
+  <section id="services">
+    <img src="./images/landingpage-03.jpg" width="100%"/>
+    <img src="./images/landingpage-04.jpg" width="100%"/>
+  </section>
+
+  <section id="contact">
+    <img src="./images/landingpage-05.jpg" width="100%"/>
+    <a href="tel:01053285816" id="applyCall" class="btn btn-dark">전화하기</a>
+    <a href="https://forms.gle/LxkxTSsV6RPY9nnr6" id="applyCodi" class="btn btn-dark">코디신청하기</a>
+  </section>
+
+  <!-- <section id="about">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto" >
-          <h2>About this page</h2>
-          <p class="lead">form tag action button</p>
-          <div id="main_menu_wrapper">
-              <!-- <img src="./able.jpg" alt="Able(every) Logo" width="60%" /> -->
-              <a class="btn btn-secondary btn-lg js-scroll-trigger" href="#applicationForm">온라인 양식 제출</a>
-              <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='tel:01053285816'">전화 연결</button>
-          </div>
         </div>
       </div>
     </div>
-  </section>
+  </section> 
 
   <section id="services" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Services we offer</h2>
-          <p class="lead">코디네이터와 함께하는 오프라인 쇼핑</p>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
   <section id="applicationForm">
-    <div id="main_form_wrapper" style="display: block;">
+    <div id="main_form_wrapper" style="display: none">
       <form role="form" action="#" method="POST" target="_self">
           <div class="form-group">
             <label for="input_name">이름</label>
@@ -123,26 +140,14 @@
           <div class="form-group">
             <input type="submit" value="Submit" id="tasks_post_submit" class="form-control" /> <input type="reset" value="Reset" class="form-control" />
           </div>
-          <a class="nav-link js-scroll-trigger" href="#about">GO BACK</a>
       </form>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Contact us</h2>
-          <p class="lead">하지마~ 연락하지마~</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; AB:LE</p>
+      <p class="m-0 text-center text-white">Copyright &copy; ab:le</p>
     </div>
     <!-- /.container -->
   </footer>

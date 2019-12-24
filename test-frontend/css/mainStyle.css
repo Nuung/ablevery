@@ -1,3 +1,23 @@
+body > nav {
+    /* background-color: black; */
+}
+
 body > header {
     background-color: blueviolet;
+    /* background-image: url("../images/landing_page01.jpg"); */
+    background-size: cover;
+}
+
+body > #about, #services, #contact {
+    padding: 0%;
+}
+
+#applyCall {
+    float: left;
+    margin-left: 10%;
+}
+
+#applyCodi {
+    float: right;
+    margin-right: 10%;
 }
