@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
+  <!-- Get head tags as components -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154978198-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-154978198-1');
   </script>
+  <base href="http://www.ablevery.com/" target="_blank" />
+  <base href="http://ablevery.com/" target="_blank" />
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>ab:)e(every)</title>
-  
+  <meta name="description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
+  <meta name="author" content="ab:le(every)">
+
+  <!-- meta tag for face book link share -->
+  <meta property="og:title" content="ab:le(every)">
+  <meta property="og:description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
+  <meta property="og:image" content="./images/landingpage-01.jpg">
+  <meta property="og:image:type" content="image/jpg">
+
+  <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
+  <meta itemprop="name" content="ab:le(에브리)">
+  <meta itemprop="description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
+  <meta itemprop="image" content="./images/landingpage-01.jpg">
+
+  <title>ablevery</title>
+
   <!-- Favicon setting -->
   <link rel="shortcut icon" href="./images/cl_ico.ico">
   <link rel="icon" href="./images/cl_ico.ico">
 
-  <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS and JS -->
+  <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
@@ -36,7 +51,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container" id="navContainer">
       <a class="navbar-brand js-scroll-trigger" id="logImg" href="#page-top">
-        <img src="./images/CI_Landing-01.png" width="45%"/>
+        <img src="./images/CI_Landing-01.png" width="40%"/>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -60,26 +75,26 @@
     </div>
   </nav>
 
-  <img src="./images/landingpage-01.jpg" width="100%"/>
+  <img src="./images/landingpage-01.jpg" alt="welcome to able(every)" width="100%"/>
 
   <section id="about">
-    <img src="./images/landingpage-02.jpg" width="100%"/>
+    <img src="./images/landingpage-02.jpg" alt="시각장애인과 함께하는 오프라인 쇼핑, 모든 시각장애인이 원하는 옷을 직접 구입할 수 있는 에브리 36.5" width="100%"/>
   </section>
 
   <section id="review">
-    <img src="./images/landingpage-03.jpg" width="100%"/>
+    <img src="./images/landingpage-03.jpg" alt="사용자 리뷰" width="100%"/>
   </section>
 
   <section id="use">
-    <img src="./images/landingpage-04.jpg" width="100%"/>
+    <img src="./images/landingpage-04.jpg" alt="서비스 진행방식, 이용문의, 정보수집 및 전달, 코디매칭, 서비스 이용" width="100%"/>
   </section>
 
   <section id="contact">
-    <img src="./images/landingpage-05.jpg" width="100%"/>
+    <img src="./images/landingpage-05.jpg" alt="연락은 able_every@daum.net 으로 주세요" width="100%"/>
     <!-- <a href="tel:01053285816" id="applyCall" class="btn btn-dark btn-lg">전화하기</a> -->
     <a href="mailto:able_every@daum.net" id="applyMail" class="btn btn-dark btn-lg">메일보내기</a>
     <a href="https://forms.gle/LxkxTSsV6RPY9nnr6" id="applyCodi" class="btn btn-dark btn-lg" target= "_blank">코디신청하기</a>
-    <img src="./images/landingpage-06.jpg" width="100%"/>
+    <img src="./images/landingpage-06.jpg" alt="연락은 able_every@daum.net 으로 주세요" width="100%"/>
     <!-- <a href="tel:01053285816" id="applyCall" class="btn btn-purple btn-lg">전화하기</a> -->
     <!-- <a href="https://forms.gle/LxkxTSsV6RPY9nnr6" id="applyCodi" class="btn btn-purple btn-lg">코디신청하기</a> -->
   </section>
@@ -176,7 +191,6 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
-
 </body>
 <script>
   // function formAction() {
