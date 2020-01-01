@@ -1,7 +1,10 @@
 function includeHTML() { 
-    var z, i, elmnt, file, xhttp; z = document.getElementsByTagName("*"); 
+    let z, i, elmnt, file, xhttp; 
+    z = document.getElementsByTagName("*"); 
+
     for (i = 0; i < z.length; i++) { 
-        elmnt = z[i]; file = elmnt.getAttribute("include-html"); 
+        elmnt = z[i]; 
+        file = elmnt.getAttribute("include-html"); 
         if (file) { 
             xhttp = new XMLHttpRequest(); 
             xhttp.onreadystatechange = function() { 
