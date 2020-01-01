@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const formRouter = require('./src/routes/formRoutes');
 const app = express();
@@ -10,6 +11,7 @@ app.use(logger('dev'));
 app.use(express.json()); // body-parser setting ~ express include body-parser from 4.X version
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors()); // CORS 설정
 
 formRouter(app);
 

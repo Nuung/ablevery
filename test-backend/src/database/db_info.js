@@ -10,7 +10,7 @@ module.exports = (function () {
       database: 'mydb'
     },
     real: { // real server db info
-      host: '54.180.94.2',
+      host: '127.0.0.1', //54.180.94.2
       port: '3306',
       user: 'root',
       password: '45812qlgks',

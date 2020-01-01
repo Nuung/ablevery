@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var config = require('./db_info').local; // locat or real or dev
+var config = require('./db_info').real; // locat or real or dev
 // var config = require('./db_info').real; // locat or real or dev
 
 module.exports = function () {

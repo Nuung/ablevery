@@ -22,19 +22,19 @@
   <!-- meta tag for face book link share -->
   <meta property="og:title" content="ab:le(every)">
   <meta property="og:description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
-  <meta property="og:image" content="./images/landingpage-01.jpg">
+  <meta property="og:image" content="./public/images/landingpage-01.jpg">
   <meta property="og:image:type" content="image/jpg">
 
   <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
   <meta itemprop="name" content="ab:le(에브리)">
   <meta itemprop="description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
-  <meta itemprop="image" content="./images/landingpage-01.jpg">
+  <meta itemprop="image" content="./public/images/landingpage-01.jpg">
 
   <title>ablevery</title>
 
   <!-- Favicon setting -->
-  <link rel="shortcut icon" href="./images/cl_ico.ico">
-  <link rel="icon" href="./images/cl_ico.ico">
+  <link rel="shortcut icon" href="./public/images/cl_ico.ico">
+  <link rel="icon" href="./public/images/cl_ico.ico">
 
   <!-- Bootstrap core CSS and JS -->
   <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,19 +42,15 @@
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Custom styles for this template -->
-  <link href="./css/mainStyle.css" rel="stylesheet">
-  <style>
-    #importHeader {
-      margin-bottom: 60px;
-    }
-  </style>
+  <link href="./public/css/mainStyle.css" rel="stylesheet">
+  <link href="./public/css/codiStyle.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
   <div id="importHeader"></div>
 
   <div class="list-group">
-    <div class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#exampleModalCenter">
+    <div id="ajaxTest" style="background-color: blueviolet;" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#exampleModalCenter">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">List group item heading</h5>
         <small>3 days ago</small>
@@ -144,9 +140,6 @@
 
   <!-- Plugin JavaScript -->
   <script src="./lib/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom JavaScript for this theme -->
-  <script src="./js/scrolling-nav.js"></script>
 </body>
 <script>
   $(document).ready(function(){
@@ -162,5 +155,78 @@
       $('#navbarMenuItems').append(menuArr[index]);
     }
   });
+
+
+  // form data change to Arr -> for Ajax JSON data
+  function fn_formParse(formName) {
+    let form = $("#" + formName).serializeArray();
+    let formArray = {};
+
+    $.map(form, function(n, i){
+        formArray[n['name']] = n['value'];
+    });
+
+    return formArray;
+  }
+
+  $('#ajaxTest').click(function (event) {
+      event.preventDefault();
+
+      // let formdataArr = fn_formParse("tasks_id_get_form");
+ 
+      $.ajax({
+        type: "GET",
+        url: "http://13.209.17.19:3000/tasks/",//+escape(formdataArr.id),
+        dataType: "json",
+        
+        success: function (data) {
+          alert("complete");
+          console.log(data);
+
+          // res.json(task); -> restAPI 에서 json형태로 model Task를 (obj) res 해준다.
+          $.each(data, function(i, item) {
+            // $("#result_li").append(
+              // "<li>"+escape(formdataArr.id)+", "+item.task+"</li>");
+              console.log(item.task);
+          });
+        },
+
+        error: function (e) {
+          console.log("ERROR : ", e);
+          alert("fail");
+        }
+      });
+    });
+
+  /*
+  $('#tasks_id_put_submit').click(function (event) {
+      event.preventDefault();
+      var formdataArr = fn_formParse("tasks_id_put_form");
+ 
+      $.ajax({
+        type: "PUT",
+        url: "/tasks/"+formdataArr.id,
+        dataType: "json",
+
+        data: { task: escape(formdataArr.task) },
+
+        success: function (data) {
+          alert("complete");
+          console.log(data);
+
+          // res.json(task); -> restAPI 에서 json형태로 model Task를 (obj) res 해준다.
+          $.each(data, function(i, item) {
+            $("#result_li").append(
+              "<li>"+formdataArr.id+", "+item.task+"</li>");
+          });
+        },
+
+        error: function (e) {
+          console.log("ERROR : ", e);
+          alert("fail");
+        }
+      });
+    });  
+  */
 </script>
 </html>
