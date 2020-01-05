@@ -39,22 +39,11 @@ ReqList.getAllReqList = function (result) {
   });   
 };
 
-Customer.getACustomer = function (id, result) {  
-  connection.query("Select * from customer WHERE id = ?", [id], function (err, res) {
-    if(err) {
-      console.log("error: ", err);
-      result(null, err);
-    }
-    else {
-      console.log('A Customer : ', res);  
-      result(null, res);
-    }
-  });   
-};
+// ReqList.updateCodiByid = function(id, reqList, result){
+  
+//   // 먼저 지금 로그인 한 코디의 id 값을 얻고 -> 그 아이디 값으로 업데이트를 해준다 / reqList가 codi가 되야함
 
-// Customer.updateByid = function(id, customer, result){
-//   // isEnd 는 tinyint(1) => 0, 1 값 뿐
-//   connection.query("UPDATE customer SET isEnd = ? WHERE id = ?", [customer.isEnd, id], function (err, res) {
+//   connection.query("UPDATE req_list SET codi_id = ? WHERE id = ?", [reqList.codi_id, id], function (err, res) {
 //     if(err) {
 //       console.log("error: ", err);
 //       result(null, err);
@@ -65,16 +54,16 @@ Customer.getACustomer = function (id, result) {
 //   }); 
 // };
 
-Customer.remove = function(id, result){
-    connection.query("DELETE FROM customer WHERE id = ?", [id], function (err, res) {
-        if(err) {
-            console.log("error: ", err);
-            result(null, err);
-        }
-        else {
-            result(null, res);
-        }
-    }); 
-};
+// ReqList.remove = function(id, result){
+//     connection.query("DELETE FROM customer WHERE id = ?", [id], function (err, res) {
+//         if(err) {
+//             console.log("error: ", err);
+//             result(null, err);
+//         }
+//         else {
+//             result(null, res);
+//         }
+//     }); 
+// };
 
-module.exports = Customer;
+module.exports = ReqList;

@@ -48,6 +48,19 @@ Customer.getAllCustomer = function (result) {
   });   
 };
 
+Customer.getACustomerbyName = function (name, result) {  
+  connection.query("Select * from customer WHERE name LIKE ?", ['%'+name+'%'], function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(null, err);
+    }
+    else {
+      console.log('A Customer : ', res);  
+      result(null, res);
+    }
+  });   
+};
+
 Customer.getACustomer = function (id, result) {  
   connection.query("Select * from customer WHERE id = ?", [id], function (err, res) {
     if(err) {

@@ -7,7 +7,7 @@ module.exports = (function () {
       port: '3306',
       user: 'root',
       password: '45812qlgks!#',
-      database: 'mydb'
+      database: 'ablevery_codi'
     },
     real: { // real server db info
       host: '127.0.0.1', //54.180.94.2
