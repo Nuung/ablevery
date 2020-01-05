@@ -1,15 +1,16 @@
 'use strict';
 
 module.exports = function(app) {
-  var todoList = require('../controllers/taskController.js');
-
+  var customerList = require('../controllers/customerController.js');
+  
   // todoList Routes
-  app.route('/tasks')
-    .get(todoList.list_all_tasks)
-    .post(todoList.create_a_task);
-   
-   app.route('/tasks/:taskId')
-    .get(todoList.read_a_task)
-    .put(todoList.update_a_task)
-    .delete(todoList.delete_a_task);
+  app.route('/customers')
+    .get(customerList.list_all_customers)
+    .post(customerList.create_a_customer);
+  
+  app.route('/customers/:id')
+    .get(customerList.read_a_customer)
+    .delete(customerList.delete_a_customer);
+  
+    // .put(customerList.update_a_customer_end)
 };

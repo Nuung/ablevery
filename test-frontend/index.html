@@ -11,9 +11,6 @@
     gtag('js', new Date());
     gtag('config', 'UA-154978198-1');
   </script>
-  <base href="http://www.ablevery.com/#" />
-  <base href="http://ablevery.com/#" />
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="코디네이터와 시각장애인이 함께하는 오프라인 쇼핑, ab:le(every)">
@@ -47,7 +44,36 @@
 </head>
 
 <body id="page-top">
-  <div id="importHeader"></div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container" id="navContainer">
+      <a class="navbar-brand js-scroll-trigger" id="logImg" href="#page-top">
+        ab:)e[every]
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" id="navbarMenuItems">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">ABOUT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#review">REVIEW</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#use">USE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">CONTACT US</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">LOGIN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <img src="./public/images/landingpage-01.jpg" alt="welcome to able(every)" width="100%"/>
   <section id="about">
@@ -69,85 +95,41 @@
     <!-- <a href="https://forms.gle/LxkxTSsV6RPY9nnr6" id="applyCodi" class="btn btn-purple btn-lg">코디신청하기</a> -->
   </section>
 
+  <!-- Modal HTML -->
+  <div id="modalLoginForm" class="modal fade">
+    <div class="modal-dialog modal-login modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="./public/images/CI-fontLogo.jpg" class="modal-title"/>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/examples/actions/confirmation.php" method="post">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="text" class="form-control" name="password" placeholder="Password" required="required">
+              </div>
+            </div>
+            <div class="form-group" style="text-align: center;">
+              <button type="submit" class="btn btn-primary btn-block btn-lg">LOG IN</button>
+            </div>
+            <p class="hint-text"><a href="#">Forgot Password?</a></p>
+          </form>
+        </div> <!-- modal-body -->
+        <div class="modal-footer">Don't have an account? <a href="#">Create one</a></div>
+      </div> <!-- modal-content -->
+    </div>
+  </div>
+
   <div id="importFooter"></div>
-
-  <!-- <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto" >
-        </div>
-      </div>
-    </div>
-  </section> 
-
-  <section id="services" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-        </div>
-      </div>
-    </div>
-  </section> 
-  
-  <section id="applicationForm">
-    <div id="main_form_wrapper" style="display: none">
-      <form role="form" action="#" method="POST" target="_self">
-          <div class="form-group">
-            <label for="input_name">이름</label>
-            <input type="text" id="input_name" class="form-control" name="input_name" placeholder="이름을 입력하세요" />
-          </div>
-          <div class="form-group">
-            <label for="input_place">장소</label>
-            <input type="text" id="input_place" class="form-control" name="input_place" placeholder="장소를 선택하세요(예시)" />
-          </div>
-          <div class="form-group">
-            <label for="input_date">날짜</label>
-            <input type="text" id="input_date" class="form-control" name="input_date" placeholder="날짜를 선택하세요" />
-          </div>
-          <div class="form-group">
-            <label for="input_with">함께하는 동행인 여부</label>
-            <input type="text" id="input_with" class="form-control" name="input_with" placeholder="함께하는 동행인 여부" />
-          </div>
-          <div class="form-group">
-            <label for="input_plan">계획 구매 품목</label>
-            <input type="text" id="input_plan" class="form-control" name="input_plan" placeholder="계획 구매 품목" />
-          </div>
-          <div class="form-group">
-            <label for="input_style">원하는 스타일</label>
-            <input type="text" id="input_style" class="form-control" name="input_style" placeholder="원하는 스타일" />
-          </div>
-          <div class="form-group">
-            <label for="input_brand">선호하는 브랜드</label>
-            <input type="text" id="input_brand" class="form-control" name="input_style" placeholder="선호하는 브랜드" />
-          </div>
-          <div class="form-group">
-            <label for="input_price">물품 예상 금액</label>
-            <input type="text" id="input_price" class="form-control" name="input_price" placeholder="물품 예상 금액" />
-          </div>
-          <div class="form-group">
-            <label for="input_info">기타 추가 정보</label>
-          </div>
-          <div class="form-group">
-            <textarea id="input_info" class="form-control" name="input_info" placeholder="물품 목적, 본인이 가진 의류, 선호하는 질감 등"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Submit" id="tasks_post_submit" class="form-control" /> <input type="reset" value="Reset" class="form-control" />
-          </div>
-      </form>
-    </div>
-  </section> -->
-
   <script>
-    $("#importHeader").load("components/navBar.html");
     $("#importFooter").load("components/footer.html");   
   </script>
   <!-- Bootstrap core JavaScript -->

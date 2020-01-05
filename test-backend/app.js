@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const escapeJSON = require('escape-json-node');
 
 const formRouter = require('./src/routes/formRoutes');
 const app = express();

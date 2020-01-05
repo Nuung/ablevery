@@ -14,7 +14,7 @@ module.exports = (function () {
       port: '3306',
       user: 'root',
       password: '45812qlgks',
-      database: 'testdb'
+      database: 'ablevery_codi'
     },
     dev: { // dev server db info - Not using now
       host: '',

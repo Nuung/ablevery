@@ -1,3 +1,4 @@
+
 'user strict';
 // db setting
 const mysql_dbc = require('../database/db_con')();
