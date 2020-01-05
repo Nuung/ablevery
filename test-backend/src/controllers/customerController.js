@@ -15,10 +15,21 @@ exports.list_all_customers = function(req, res) {
 
 exports.read_a_customer = function(req, res) {
   Customer.getACustomer(req.params.id, function(err, customer) {
-    console.log('controller - getCustomerForList')
+    console.log('controller - getACustomer')
     if (err){
       res.send(err);
       console.log('res a customer', customer);
+    }
+    res.send(customer);
+  });
+};
+
+exports.read_a_customer_by_name = function(req, res) {
+  Customer.getACustomerbyName(req.params.name, function(err, customer) {
+    console.log('controller - getACustomerbyName')
+    if (err){
+      res.send(err);
+      console.log('search a customer', customer);
     }
     res.send(customer);
   });

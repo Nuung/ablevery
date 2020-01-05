@@ -83,14 +83,25 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          대상자 [검색 박스]
-          진행원하는 날 [달력]
-          신청날은 곧 created_at
-        </div>
+        <div class="modal-body">          
+          <div class="mb-4">
+            <input id="customerSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          </div>
+          <form id="reqlist_form">
+            <div class="form-group">
+              <label for="customerSelect">검색 결과</label>
+              <select class="form-control" id="customerSelect">
+                <!-- 검색 결과가 append 로 여기에 리스트 됨 -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="service_day">서비스 요청 날짜</label>
+              <input type="datetime-local" id="service_day" name="service_day" style="width: 100%;"/>
+            </div>
+          </form> <!-- modal form for req_list -->
+        </div> <!-- modal body -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addReqList()">INSERT</button>
         </div>
       </div>
     </div>
@@ -108,12 +119,18 @@
   <script src="./lib/jquery-easing/jquery.easing.min.js"></script>
 </body>
 <script>
-  function addReqList() {
-    
+  // form data change to Arr -> for Ajax JSON data
+  function fn_formParse(formName) {
+    let form = $("#" + formName).serializeArray();
+    let formArray = {};
+    $.map(form, function(n, i){
+        formArray[n['name']] = n['value'];
+    });
+    return formArray;
   }
 
+  // admin 계정일때 메뉴에 + 추가
   const isAdmin = true;
-
   $("#importHeader").load("components/codinavBar.html", function(){
     if(isAdmin) {
       $('#navbarMenuItems').append(
@@ -125,46 +142,90 @@
   });
   $("#importFooter").load("components/footer.html");
 
-
-
-  // form data change to Arr -> for Ajax JSON data
-  function fn_formParse(formName) {
-    let form = $("#" + formName).serializeArray();
-    let formArray = {};
-    $.map(form, function(n, i){
-        formArray[n['name']] = n['value'];
-    });
-    return formArray;
+  // admin 계정 -> req_list 추가 기능 액션 
+  function addReqList() {
+    let tempVal = $('#customerSelect').val();
+    $.ajax({
+        type: "POST",
+        url: "http://13.209.17.19:3000/reqlist",
+        dataType: "json",
+        data: { customer_id: tempVal.split(",")[0], service_day: $('#service_day').val()},
+        success: function (data) {
+          alert("success!");
+        },
+        error: function (e) {
+          console.log("ERROR : ", e);
+          alert("fail");
+        }
+    }); // ajax
   }
 
-  window.onload  = function() {
+  // admin 계정 -> 모달 창 검색 액션 for 대상자 찾기
+  const searchInput = document.getElementById("customerSearch");
+  searchInput.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault(); // Cancel the default action, if needed
+      let searchData = $('#customerSearch').val();
+      $.ajax({
+        type: "GET",
+        url: "http://13.209.17.19:3000/customers/" + searchData,
+        dataType: "json",
+        
+        success: function (data) {
+          if(data.length == 0){
+            $('#customerSelect').empty();
+            alert("일치하는게 없습니다");
+          }
+          // res.json(task); -> restAPI 에서 json형태로 model Task를 (obj) res 해준다.
+          $.each(data, function(i, item) {
+            let isMale, isFollower;
+            if(item.gender == 1){
+              isMale = "남자";
+            } else {
+              isMale = "여자";
+            }
+            $('#customerSelect').empty();
+            $('#customerSelect').append(
+              '<option>'+ item.id + ', ' + item.name + ', ' + item.ages + ', ' + isMale + ', ' + item.phonenum +'</option>'
+            )
+          });
+        },
+        error: function (e) {
+          console.log("ERROR : ", e);
+          alert("fail");
+        }
+      });
+    }
+  });
+
+//─────────────────────────────────────────────────────────────────────────────────────────────────────────────//
+
+  function findCustomerById(reqListData) {
     $.ajax({
-      type: "GET",
-      url: "http://13.209.17.19:3000/customers/",//+escape(formdataArr.id),
-      dataType: "json",
-      
-      success: function (data) {
-        // res.json(task); -> restAPI 에서 json형태로 model Task를 (obj) res 해준다.
-        $.each(data, function(i, item) {
+        type: "GET",
+        url: "http://13.209.17.19:3000/customers/list/" + reqListData.customer_id,
+        dataType: "json",
+        success: function (data) {
           let isMale, isFollower;
-          if(item.gender == 1){
+          if(data[0].gender == 1){
             isMale = "남자";
           } else {
             isMale = "여자";
           }
 
-          if(item.follower == 1){
+          if(data[0].follower == 1){
             isFollower = "동행인 있음";
           } else {
             isFollower = "동행인 없음";
           }
 
-          if(item.isEnd == 1){
+          if(reqListData.codi_id != null){
             $('#customer_list').append(
             '<div class="list-group-item list-group-item-action flex-column align-items-start isEnd" data-toggle="modal" data-target="#exampleModalCenter">'+
               '<div class="d-flex w-100 justify-content-between">'+
-                '<h5 class="mb-1">' + item.name + ', ' + isMale + '</h5>'+
-                '<small>'+ item.created_at.split('T')[0] +'</small>'+
+                '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '</h5>'+
+                '<small>'+ reqListData.req_day.split('T')[0] +'</small>'+
               '</div>'+
               '<div>매칭이 완료된 분입니다.</div>'+
             '</div>'
@@ -173,18 +234,33 @@
             $('#customer_list').append(
             '<div class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#exampleModalCenter">'+
               '<div class="d-flex w-100 justify-content-between">'+
-                '<h5 class="mb-1">' + item.name + ', ' + isMale + ', ' + item.age + '세 </h5>'+
-                '<small>'+ item.created_at.split('T')[0] +'</small>'+
+                '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '세 </h5>'+
+                '<small>'+ reqListData.req_day.split('T')[0] +'</small>'+
               '</div>'+
-              '<p class="mb-1">' + '선호지역: ' + item.location + '</p>'+
-              '<p class="mb-1">' + '진행 원하는 날짜: ' + item.serviceday.split('T')[0] + ', '+ item.serviceday.split('T')[1] + '</p>'+
+              '<p class="mb-1">' + '선호지역: ' + data[0].location + '</p>'+
+              '<p class="mb-1">' + '진행 원하는 날짜: ' + reqListData.service_day.split('T')[0] + ', '+ reqListData.service_day.split('T')[1] + '</p>'+
               '<p class="mb-1">' + isFollower + '</p>'+ 
               '<small>Donec id elit non mi porta.</small>'+
             '</div>'
             )
           }
-
-
+        },
+        error: function (e) {
+          console.log("ERROR : ", e);
+          alert("fail");
+        }
+    }); // ajax
+  }
+  
+  window.onload  = function() {
+    $.ajax({
+      type: "GET",
+      url: "http://13.209.17.19:3000/reqlist/",//+escape(formdataArr.id),
+      dataType: "json",
+      
+      success: function (data) {
+        $.each(data, function(i, item) {
+          findCustomerById(item);
         });
       },
       beforeSend:function(){
