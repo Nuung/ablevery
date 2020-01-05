@@ -10,9 +10,9 @@ module.exports = function(app) {
     .post(customerList.create_a_customer);
   
   app.route('/customers/:name')
-    .get(customerList.read_a_customer_by_name)
+    .get(customerList.read_a_customer_by_name);
 
-  app.route('/customers/list/:id')
+  app.route('/customers/list/:id') // id is primary key
     .get(customerList.read_a_customer)
     .delete(customerList.delete_a_customer);
 
@@ -20,5 +20,7 @@ module.exports = function(app) {
     .get(reqList.list_all_reqList)
     .post(reqList.create_a_reqList);
   
-    // .put(customerList.update_a_customer_end)
+  app.route('/reqlist/:id')
+    .get(reqList.read_a_reqList)
+    .put(reqList.update_a_reqlist_codi);
 };

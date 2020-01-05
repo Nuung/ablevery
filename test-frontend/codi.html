@@ -46,32 +46,9 @@
 <body id="page-top">
   <div id="importHeader"></div>
 
-  <div id="customer_list" class="list-group">
-    <div id="wrap-loading" style="text-align: center;">
-      <img src="./public/images/loading.gif" />
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- req_list들이 모두 여기에 리스팅되게 되어있음 -->
+  <div id="customer_list">
+  </div> <!-- customer_list -->
 
   <!-- Add ReqList Modal -->
   <div class="modal fade" id="reqListModalCenter" tabindex="-1" role="dialog" aria-labelledby="reqListModalCenterTitle" aria-hidden="true">
@@ -222,27 +199,41 @@
 
           if(reqListData.codi_id != null){
             $('#customer_list').append(
-            '<div class="list-group-item list-group-item-action flex-column align-items-start isEnd" data-toggle="modal" data-target="#exampleModalCenter">'+
-              '<div class="d-flex w-100 justify-content-between">'+
-                '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '</h5>'+
-                '<small>'+ reqListData.req_day.split('T')[0] +'</small>'+
+            '<div class="card isEnd">'+
+              '<div class="card-header">'+
+                '<a class="card-link" data-toggle="collapse" href="#collapse_' + reqListData.id + '">'+
+                  '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '</h5>'+
+                  '<small> 서비스 신청 날짜: '+ reqListData.req_day.split('T')[0] +'</small>'+
+                '</a>'+
               '</div>'+
-              '<div>매칭이 완료된 분입니다.</div>'+
+              '<div id="collapse_' + reqListData.id + '" class="collapse" data-parent="#customer_list">'+
+                '<div class="card-body">'+
+                  '매칭이 완료된 분입니다.'+
+                '</div>'+
+              '</div>'+
             '</div>'
-            )
+            );
           } else {
             $('#customer_list').append(
-            '<div class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#exampleModalCenter">'+
-              '<div class="d-flex w-100 justify-content-between">'+
-                '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '세 </h5>'+
-                '<small>'+ reqListData.req_day.split('T')[0] +'</small>'+
+            '<div class="card">'+
+              '<div class="card-header">'+
+                '<a class="card-link" data-toggle="collapse" href="#collapse_' + reqListData.id + '">'+
+                  '<h5 class="mb-1">' + isMale + ', ' + data[0].ages + '</h5>'+
+                  '<small> 서비스 신청 날짜: '+ reqListData.req_day.split('T')[0] +'</small>'+
+                '</a>'+
               '</div>'+
-              '<p class="mb-1">' + '선호지역: ' + data[0].location + '</p>'+
-              '<p class="mb-1">' + '진행 원하는 날짜: ' + reqListData.service_day.split('T')[0] + ', '+ reqListData.service_day.split('T')[1] + '</p>'+
-              '<p class="mb-1">' + isFollower + '</p>'+ 
-              '<small>Donec id elit non mi porta.</small>'+
+              '<div id="collapse_' + reqListData.id + '" class="collapse" data-parent="#customer_list">'+
+                '<div class="card-body">'+
+                  '<p class="mb-1">' + '선호지역: ' + data[0].location + '</p>'+
+                  '<p class="mb-1">' + '진행 원하는 날짜: ' + reqListData.service_day.split('T')[0] + ', '+ reqListData.service_day.split('T')[1] + '</p>'+
+                  '<p class="mb-1">' + isFollower + '</p>'+ 
+                  '<div align="center">'+
+                    '<button id="sign_' + reqListData.id + '" type="button" class="btn btn-primary btn-lg center" onclick="signReqList(this.id)">신청</button>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
             '</div>'
-            )
+            );
           }
         },
         error: function (e) {
@@ -250,9 +241,82 @@
           alert("fail");
         }
     }); // ajax
+  } // findCustomerById
+
+  // // req_list에서 customer_id -> 해당하는 id 값의 
+  // function findCustomerByIdUpdate(reqListData) {
+  //   $.ajax({
+  //       type: "GET",
+  //       url: "http://13.209.17.19:3000/customers/list/" + reqListData.customer_id,
+  //       dataType: "json",
+  //       success: function (data) {
+  //         findCustomerById();
+  //       },
+  //       error: function (e) {
+  //         console.log("ERROR : ", e);
+  //         alert("fail");
+  //       }
+  //   }); // ajax
+  // } // findCustomerByIdUpdate
+
+  // codi -> req_list 중 하나 눌러서, '신청' 버튼을 눌렀을 때, 다른 사람이 먼저 먹었는지 탐색해야 함 -> GET후, 먹었으면 알림 / 아니면 PUT method
+  function signReqList(req_list_id) {
+    // JSON.stringify(data[0])
+    const session_codi_id = "2"; // 코디 아이디(기본 키 값, id)를 세션에서 가져와야 함, 지금은 가정
+
+    $.ajax({
+      type: "GET",
+      url: "http://13.209.17.19:3000/reqlist/" + req_list_id.split('_')[1],
+      dataType: "json",
+
+      success: function (data) {
+        // 클릭한 버튼의 req_list id GET후 성공, codi_id 가 null 이어야만 update가 가능하게
+        if (data[0].codi_id != null) {
+            alert("다른 사람이 먼저 매칭 신청을 했습니다.")
+            $('#customer_list').empty();
+            onloadLoading();
+            return;
+        }
+        else { // codi_id 가 null 임!
+          $.ajax({
+            type: "PUT",
+            url: "http://13.209.17.19:3000/reqlist/" + req_list_id.split('_')[1],
+            dataType: "json",
+            data: { codi_id: session_codi_id },
+
+            success: function (data) {
+              alert("신청이 완료되었습니다. 매칭을 mypage에서 확인해 주세요");
+              $('#customer_list').empty();
+              onloadLoading();
+            },
+            error: function (e) {
+              console.log("ERROR : ", e);
+              alert("fail");
+            }
+          }); // ajax
+        } // if ~ else 
+      },
+      error: function (e) {
+        console.log("ERROR : ", e);
+        alert("fail");
+      }
+    }); // ajax
   }
   
-  window.onload  = function() {
+  // function findCustomerById(reqListData) {
+  // }
+
+  // codi first list loading ajax!
+  window.onload  = onloadLoading();
+  function onloadLoading() {
+    // adding loading GIF
+    $('#customer_list').append(
+      '<div id="wrap-loading" style="text-align: center;">'+
+        '<img src="./public/images/loading.gif" />'+
+      '</div>'
+    );
+
+
     $.ajax({
       type: "GET",
       url: "http://13.209.17.19:3000/reqlist/",//+escape(formdataArr.id),
