@@ -13,16 +13,16 @@ exports.list_all_reqList = function(req, res) {
   });
 };
 
-// exports.read_a_customer = function(req, res) {
-//   Customer.getACustomer(req.params.id, function(err, customer) {
-//     console.log('controller - getACustomer')
-//     if (err){
-//       res.send(err);
-//       console.log('res a customer', customer);
-//     }
-//     res.send(customer);
-//   });
-// };
+exports.read_a_reqList = function(req, res) {
+  ReqList.getAReqList(req.params.id, function(err, reqList) {
+    console.log('controller - getAReqList')
+    if (err){
+      res.send(err);
+      console.log('res a reqList', reqList);
+    }
+    res.send(reqList);
+  });
+};
 
 // exports.read_a_customer_by_name = function(req, res) {
 //   Customer.getACustomerbyName(req.params.name, function(err, customer) {
@@ -57,14 +57,14 @@ exports.create_a_reqList = function(req, res) {
   }
 };  
   
-// exports.update_a_customer_end = function(req, res) {
-//   Customer.updateByNum(req.params.id, new Customer(req.body), function(err, customer) {
-//     if (err)
-//       res.send(err);
+exports.update_a_reqlist_codi = function(req, res) {
+  ReqList.updateCodiByid(req.params.id, new ReqList(req.body), function(err, reqList) {
+    if (err)
+      res.send(err);
 
-//     res.json(customer);
-//   });
-// };
+    res.json(reqList);
+  });
+};
   
   
 // exports.delete_a_customer = function(req, res) {

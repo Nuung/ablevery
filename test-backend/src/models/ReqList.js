@@ -39,20 +39,32 @@ ReqList.getAllReqList = function (result) {
   });   
 };
 
-// ReqList.updateCodiByid = function(id, reqList, result){
-  
-//   // 먼저 지금 로그인 한 코디의 id 값을 얻고 -> 그 아이디 값으로 업데이트를 해준다 / reqList가 codi가 되야함
+ReqList.getAReqList = function (id, result) {
+  connection.query("Select * from req_list WHERE id = ?", [id], function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(null, err);
+    }
+    else {
+      console.log('A ReqList by id : ', res);  
+      result(null, res);
+    }
+  });   
+};
 
-//   connection.query("UPDATE req_list SET codi_id = ? WHERE id = ?", [reqList.codi_id, id], function (err, res) {
-//     if(err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//     }
-//     else {
-//       result(null, res);
-//     }
-//   }); 
-// };
+ReqList.updateCodiByid = function(id, reqList, result){
+  
+  // 먼저 지금 로그인 한 코디의 id 값을 얻고 -> 그 아이디 값으로 업데이트를 해준다 / reqList가 codi가 되야함
+  connection.query("UPDATE req_list SET codi_id = ? WHERE id = ?", [reqList.codi_id, id], function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(null, err);
+    }
+    else {
+      result(null, res);
+    }
+  }); 
+};
 
 // ReqList.remove = function(id, result){
 //     connection.query("DELETE FROM customer WHERE id = ?", [id], function (err, res) {
