@@ -129,6 +129,7 @@
         data: { customer_id: tempVal.split(",")[0], service_day: $('#service_day').val()},
         success: function (data) {
           alert("success!");
+          onloadLoading();
         },
         error: function (e) {
           console.log("ERROR : ", e);
