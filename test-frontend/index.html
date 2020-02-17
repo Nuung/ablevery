@@ -107,6 +107,8 @@
   <section id="review">
     <img src="./public/images/landingpage-03.jpg" alt="사용자 리뷰" width="100%"/>
   </section>
+  <section id="instagram">
+  </section>
   <section id="use">
     <img src="./public/images/landingpage-04.jpg" alt="서비스 진행방식, 이용문의, 정보수집 및 전달, 코디매칭, 서비스 이용" width="100%"/>
   </section>
@@ -114,7 +116,7 @@
     <img src="./public/images/landingpage-05.jpg" alt="연락은 able_every@daum.net 으로 주세요" width="100%"/>
     <!-- <a href="tel:01053285816" id="applyCall" class="btn btn-dark btn-lg">전화하기</a> -->
     <a href="mailto:able_every@daum.net" id="applyMail" class="btn btn-dark btn-lg">메일보내기</a>
-    <a href="https://forms.gle/nF73CYdrEM4WFLPA8" id="applyMail" class="btn btn-dark btn-lg">설문조사 참여하기</a>
+    <!-- <a href="https://forms.gle/nF73CYdrEM4WFLPA8" id="applyMail" class="btn btn-dark btn-lg">설문조사 참여하기</a> -->
     <a href="https://forms.gle/LxkxTSsV6RPY9nnr6" id="applyCodi" class="btn btn-dark btn-lg" target= "_blank">코디신청하기</a>
     <img src="./public/images/landingpage-06.jpg" alt="연락은 able_every@daum.net 으로 주세요" width="100%"/>
     <!-- <a href="tel:01053285816" id="applyCall" class="btn btn-purple btn-lg">전화하기</a> -->
@@ -195,5 +197,30 @@
       actionCheck = 1;
     }
   });
+  
+  // Instagram 게시글 불러오기 
+  const wrapper = document.getElementById("instagram");
+  fetch("https://www.instagram.com/able__every/")
+  .then(a => {
+      return a.text();
+  }).then(a => {
+      const media = JSON.parse(a.slice(a.indexOf("edge_owner_to_timeline_media") + 30, a.indexOf("edge_saved_media") - 2));
+      media.edges.forEach(m => {
+          const node = m.node,
+              div = document.createElement("div"),
+              a = document.createElement("a"),
+              img = document.createElement("img");
+
+          div.className = "instaBox",
+          img.className = "instaImg",
+          a.target="_blank",
+          a.href = `https://www.instagram.com/p/${node.shortcode}/`,
+          img.src = node.display_url,
+          a.append(img),
+          div.append(a),
+          wrapper.append(div)
+      })
+  });
+  
 </script>
 </html>
